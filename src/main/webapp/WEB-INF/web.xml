@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>TwitterSearch</display-name>
+    <servlet-name>TwitterSearch</servlet-name>
+    <servlet-class>br.org.cesar.servlet.TwitterSearch</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TwitterSearch</servlet-name>
+    <url-pattern>/TwitterSearch</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TrendingTopics</display-name>
+    <servlet-name>TrendingTopics</servlet-name>
+    <servlet-class>br.org.cesar.servlet.TrendingTopics</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrendingTopics</servlet-name>
+    <url-pattern>/TrendingTopics</url-pattern>
+  </servlet-mapping>
 </web-app>
