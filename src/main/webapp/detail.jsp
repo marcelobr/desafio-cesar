@@ -12,6 +12,57 @@
 	href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <title>Trending Topics</title>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	google.charts.load('current', {
+		packages : [ 'corechart', 'bar' ]
+	});
+	google.charts.setOnLoadCallback(drawBasic);
+
+	function drawBasic() {
+
+		/* var data = google.visualization.arrayToDataTable([
+				[ 'Estado', 'Quantidade de Tweets', ],
+				[ 'New York City, NY', 8175000 ],
+				[ 'Los Angeles, CA', 3792000 ], [ 'Chicago, IL', 2695000 ],
+				[ 'Houston, TX', 2099000 ], [ 'Philadelphia, PA', 1526000 ] ]); */
+
+		var data = new google.visualization.DataTable();
+		// assumes "word" is a string and "count" is a number
+		data.addColumn('string', 'Estado');
+		data.addColumn('number', 'Quantidade de Tweets');
+
+		/* for (var i = 0; i < jsonData.length; i++) {
+			data.addRow([ jsonData[i].word, jsonData[i].count ]);
+		} */
+		
+		data.addRows([
+			<c:forEach items="${tweetList}" var="entry">
+			[ '${entry.state}', ${entry.qty} ],
+			</c:forEach>
+			]);
+
+		var options = {
+			title : 'Número de Tweets do Estados do Brasil',
+			chartArea : {
+				width : '50%'
+			},
+			hAxis : {
+				title : 'Total de Tweets',
+				minValue : 0
+			},
+			vAxis : {
+				title : 'Estados'
+			}
+		};
+
+		var chart = new google.visualization.BarChart(document
+				.getElementById('chart_div'));
+
+		chart.draw(data, options);
+	}
+</script>
 </head>
 <body>
 	<!-- Always shows a header, even in smaller screens. -->
@@ -39,32 +90,7 @@
 			<div class="mdl-layout-spacer"></div>
 			<div
 				class="mdl-cell mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--5-col-desktop mdl-cell--stretch">
-				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-					<thead>
-						<tr>
-							<th class="mdl-data-table__cell--non-numeric">Topic</th>
-						</tr>
-					</thead>
-					<tbody>
-						<!-- <div class="mdl-spinner mdl-js-spinner is-active"></div> -->
-						<c:choose>
-							<c:when test="${!trendingList.isEmpty()}">
-								<c:forEach items="${trendingList}" var="trendingItem">
-									<tr>
-										<td class="mdl-data-table__cell--non-numeric"><a
-											href="NumberTweetsPerBrazilianState?hashtag=${trendingItem.substring(1)}">${trendingItem}</a>
-										</td>
-									</tr>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<tr>
-									<td colspan="2" style="text-align: center">Nenhuma hashtag para exibir</td>
-								</tr>
-							</c:otherwise>
-						</c:choose>
-					</tbody>
-				</table>
+				<div id="chart_div"></div>
 			</div>
 			<div class="mdl-layout-spacer"></div>
 			</section>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.org.cesar.bean.TweetsByState;
 import br.org.cesar.service.SearchService;
 
 /**
@@ -32,7 +33,8 @@ public class TwitterSearch extends HttpServlet {
 		String hashtag = request.getParameter("hashtag");
 		
 		SearchService service = new SearchService();
-		List<Integer> lista = service.getNumberTweetsPerBrazilianState(hashtag);
+		List<TweetsByState> lista = service.getNumberTweetsPerBrazilianState(hashtag);
+		//String stringlista = service.getNumberTweetsPerBrazilianState(hashtag);
 		request.setAttribute("tweetList", lista);
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}

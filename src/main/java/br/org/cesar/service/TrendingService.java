@@ -2,6 +2,7 @@ package br.org.cesar.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -64,6 +65,7 @@ public class TrendingService {
 	}
 
 	public List<String> getTrendingTopicsBrazil() throws IOException {
+		List<String> trendsList = new ArrayList<>();
 		try {
 
 			Properties oauthProp = getProp("oauth.properties");
@@ -78,7 +80,7 @@ public class TrendingService {
 
 			ResponseList<Location> locations = twitter.getAvailableTrends();
 
-			Integer idTrendLocation = getTrendLocationId("spain");
+			Integer idTrendLocation = getTrendLocationId("brazil");
 
 			if (idTrendLocation == null) {
 				System.out.println("Trend Location Not Found");
@@ -86,11 +88,20 @@ public class TrendingService {
 			}
 
 			Trends trends = twitter.getPlaceTrends(idTrendLocation);
-			for (int i = 0; i < trends.getTrends().length; i++) {
-				System.out.println(trends.getTrends()[i].getName());
+			//for (int i = 0; i < trends.getTrends().length; i++) {
+			/*for (int i = 0; i < 10; i++) {
+				//System.out.println(trends.getTrends()[i].getName());
+				trendsList.add(trends.getTrends()[i].getName());
+			}*/
+			int i = 0;
+			while (trendsList.size() <= 5) {
+				if (trends.getTrends()[i].getName().startsWith("#")) {
+					trendsList.add(trends.getTrends()[i].getName());
+				}
+				i += 1;
 			}
 
-			System.exit(0);
+			//System.exit(0);
 
 		} catch (TwitterException te) {
 			te.printStackTrace();
@@ -98,6 +109,6 @@ public class TrendingService {
 			System.exit(-1);
 		}
 
-		return null;
+		return trendsList;
 	}
 }

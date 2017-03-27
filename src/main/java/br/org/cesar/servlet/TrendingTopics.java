@@ -12,7 +12,7 @@ import br.org.cesar.service.TrendingService;
 /**
  * Servlet implementation class TrendingTopics
  */
-@WebServlet("/TrendingTopics")
+@WebServlet("/TrendingTopicsList")
 public class TrendingTopics extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
