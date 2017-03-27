@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.org.cesar.service.SearchService;
+import br.org.cesar.service.TweetsBrazilianStateService;
 
 /**
  * Servlet implementation class TwitterSearch
@@ -31,7 +31,7 @@ public class TweetsBrazilianStateJSON extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String hashtag = request.getParameter("hashtag");
-		SearchService service = new SearchService();
+		TweetsBrazilianStateService service = new TweetsBrazilianStateService();
 		String stringlista = service.getNumberTweetsPerBrazilianState(hashtag);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");

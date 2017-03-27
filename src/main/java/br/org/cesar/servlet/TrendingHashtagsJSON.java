@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.org.cesar.service.TrendingService;
+import br.org.cesar.service.TrendingHashtagsService;
 
 /**
  * Servlet implementation class TrendingSearch
@@ -28,7 +28,7 @@ public class TrendingHashtagsJSON extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		TrendingService service = new TrendingService();
+		TrendingHashtagsService service = new TrendingHashtagsService();
 		String hashtagList = service.getTrendingTopicsBrazil();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
