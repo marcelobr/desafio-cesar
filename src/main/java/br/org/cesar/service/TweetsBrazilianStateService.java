@@ -43,8 +43,8 @@ public class TweetsBrazilianStateService {
 			// Get file from resources folder
 			ClassLoader classLoader = getClass().getClassLoader();
 
-			Gson gson = new Gson();
-			GeoCodes[] arr = gson.fromJson(new FileReader(classLoader.getResource("geocode.json").getFile()),
+			Gson gsonGeoCode = new Gson();
+			GeoCodes[] arr = gsonGeoCode.fromJson(new FileReader(classLoader.getResource("geocode.json").getFile()),
 					GeoCodes[].class);
 
 			for (GeoCodes item : arr) {
@@ -66,8 +66,8 @@ public class TweetsBrazilianStateService {
 				tweetsList.add(tweetItem);
 			}
 
-			Gson gson2 = new GsonBuilder().create();
-			arrayListToJson = gson2.toJson(tweetsList);
+			Gson gsonTweetsList = new GsonBuilder().create();
+			arrayListToJson = gsonTweetsList.toJson(tweetsList);
 		}
 		// if there is an error then catch it and print it out
 		catch (TwitterException te) {
