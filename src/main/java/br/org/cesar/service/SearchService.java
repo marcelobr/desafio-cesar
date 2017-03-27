@@ -1,5 +1,7 @@
 package br.org.cesar.service;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.Properties;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import br.org.cesar.bean.GeoCodes;
 import br.org.cesar.bean.TweetsByState;
 import twitter4j.GeoLocation;
 import twitter4j.Query;
@@ -31,7 +34,7 @@ public class SearchService {
 		return props;
 	}
 
-	public List<TweetsByState> getNumberTweetsPerBrazilianState(String hashtag) throws IOException {
+	public String getNumberTweetsPerBrazilianState(String hashtag) throws IOException {
 		List<TweetsByState> tweetsList = new ArrayList<TweetsByState>();
 		String arrayListToJson = null;
 		try {
@@ -47,33 +50,46 @@ public class SearchService {
 
 			Properties geoCodeProp = getProp("geocode.properties");
 
-			Double latitude = Double.parseDouble(geoCodeProp.getProperty("amazonas.latitude"));
-			Double longitude = Double.parseDouble(geoCodeProp.getProperty("amazonas.longitude"));
-			Double raio = Double.parseDouble(geoCodeProp.getProperty("amazonas.raio"));
+			// Double latitude =
+			// Double.parseDouble(geoCodeProp.getProperty("amazonas.latitude"));
+			// Double longitude =
+			// Double.parseDouble(geoCodeProp.getProperty("amazonas.longitude"));
+			// Double raio =
+			// Double.parseDouble(geoCodeProp.getProperty("amazonas.raio"));
 
-			GeoLocation geo = new GeoLocation(latitude, longitude);
-			Query query = new Query("#" + hashtag).geoCode(geo, raio, "km");
-			// get the last 50 tweets
-			// query.count(2);
-			QueryResult result = twitter.search(query);
-			List<Status> tweets = result.getTweets();
-			
-			System.out.println(tweets.size());
-			
-			TweetsByState tweetItem = new TweetsByState("amazonas", tweets.size());
-			
-			tweetsList.add(tweetItem);
-			
-			Gson gson = new GsonBuilder().create();
-			arrayListToJson = gson.toJson(tweetsList);
+			// Get file from resources folder
+			ClassLoader classLoader = getClass().getClassLoader();
+
+			Gson gson = new Gson();
+			GeoCodes[] arr = gson.fromJson(new FileReader(classLoader.getResource("geocode.json").getFile()),
+					GeoCodes[].class);
+
+			for (GeoCodes item : arr) {
+				// GeoLocation geo = new GeoLocation(latitude, longitude);
+				GeoLocation geo = new GeoLocation(item.getLatitude(), item.getLongitude());
+				Query query = new Query("#" + hashtag).geoCode(geo, item.getRaio(), "km");
+				// get the last 50 tweets
+				query.count(10000);
+				QueryResult result = twitter.search(query);
+				List<Status> tweets = result.getTweets();
+
+				System.out.println(tweets.size());
+
+				TweetsByState tweetItem = new TweetsByState(item.getState(), tweets.size());
+
+				tweetsList.add(tweetItem);
+			}
+
+			Gson gson2 = new GsonBuilder().create();
+			arrayListToJson = gson2.toJson(tweetsList);
 		}
 		// if there is an error then catch it and print it out
 		catch (TwitterException te) {
 			System.out.println("Failed to search tweets: " + te.getMessage());
 			System.exit(-1);
 		}
-		
-		return tweetsList;
+
+		return arrayListToJson;
 	}
 
 }

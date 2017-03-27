@@ -29,4 +29,14 @@
     <servlet-name>TrendingTopics</servlet-name>
     <url-pattern>/TrendingTopics</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TweetsHastag</display-name>
+    <servlet-name>TweetsHastag</servlet-name>
+    <servlet-class>br.org.cesar.servlet.TweetsHastag</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TweetsHastag</servlet-name>
+    <url-pattern>/TweetsHastag</url-pattern>
+  </servlet-mapping>
 </web-app>

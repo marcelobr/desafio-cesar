@@ -52,7 +52,7 @@
 								<c:forEach items="${trendingList}" var="trendingItem">
 									<tr>
 										<td class="mdl-data-table__cell--non-numeric"><a
-											href="NumberTweetsPerBrazilianState?hashtag=${trendingItem.substring(1)}">${trendingItem}</a>
+											href="tweets?hashtag=${trendingItem.substring(1)}">${trendingItem}</a>
 										</td>
 									</tr>
 								</c:forEach>

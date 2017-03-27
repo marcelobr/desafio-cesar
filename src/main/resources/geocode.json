@@ -1,0 +1,164 @@
+[
+    { 
+    	"state" : "Acre",
+        "latitude" : -9.523381,
+        "longitude" : -70.279099,
+        "raio" : 270.0
+    },
+    { 
+    	"state" : "Alagoas",
+        "latitude" : -9.545050,
+        "longitude" : -36.858691,
+        "raio" : 140.0
+    },
+    { 
+    	"state" : "Amapá",
+        "latitude" : 1.198977,
+        "longitude" : -51.975878,
+        "raio" : 200.0
+    },
+    { 
+    	"state" : "Amazonas",
+        "latitude" : -4.596777,
+        "longitude" : -64.170701,
+        "raio" : 500.0
+    },
+    { 
+    	"state" : "Bahia",
+        "latitude" : -12.606659,
+        "longitude" : -41.648729,
+        "raio" : 380.0
+    },
+    { 
+    	"state" : "Ceará",
+        "latitude" : -5.220698,
+        "longitude" : -39.297655,
+        "raio" : 200.0
+    },
+    { 
+    	"state" : "Distrito Federal",
+        "latitude" : -15.774899,
+        "longitude" : -47.803819,
+        "raio" : 30.0
+    },
+    { 
+    	"state" : "Espírito Santo",
+        "latitude" : -19.837597,
+        "longitude" : -40.654467,
+        "raio" : 125.0
+    },
+    { 
+    	"state" : "Goiás",
+        "latitude" : -15.864746,
+        "longitude" : -49.328174,
+        "raio" : 230.0
+    },
+    { 
+    	"state" : "Maranhão",
+        "latitude" : -5.297278,
+        "longitude" : -45.449999,
+        "raio" : 360.0
+    },
+    { 
+    	"state" : "Mato Grosso",
+        "latitude" : -13.119057,
+        "longitude" : -55.855984,
+        "raio" : 370.0
+    },
+    { 
+    	"state" : "Mato Grosso do Sul",
+        "latitude" : -20.641745,
+        "longitude" : -54.656686,
+        "raio" : 300.0
+    },
+    { 
+    	"state" : "Minas Gerais",
+        "latitude" : -18.696812,
+        "longitude" : -44.340380,
+        "raio" : 290.0
+    },
+    { 
+    	"state" : "Pará",
+        "latitude" : -5.092700,
+        "longitude" : -52.515420,
+        "raio" : 380.0
+    },
+    { 
+    	"state" : "Paraíba",
+        "latitude" : -6.979411,
+        "longitude" : -36.858692,
+        "raio" : 250.0
+    },
+    { 
+    	"state" : "Paraná",
+        "latitude" : -24.655589,
+        "longitude" : -51.294725,
+        "raio" : 280.0
+    },
+    { 
+    	"state" : "Pernambuco",
+        "latitude" : -8.177471,
+        "longitude" : -37.846884,
+        "raio" : 350.0
+    },
+    { 
+    	"state" : "Piauí",
+        "latitude" : -7.371820,
+        "longitude" : -42.593554,
+        "raio" : 300.0
+    },
+    { 
+    	"state" : "Rio de Janeiro",
+        "latitude" : -22.419747,
+        "longitude" : -43.049487,
+        "raio" : 190.0
+    },
+    { 
+    	"state" : "Rio Grande do Norte",
+        "latitude" : -6.040690,
+        "longitude" : -36.649951,
+        "raio" : 180.0
+    },
+    { 
+    	"state" : "Rio Grande do Sul",
+        "latitude" : -29.524317,
+        "longitude" : -52.920702,
+        "raio" : 270.0
+    },
+    { 
+    	"state" : "Rondônia",
+        "latitude" : -11.252312,
+        "longitude" : -63.061082,
+        "raio" : 310.0
+    },
+    { 
+    	"state" : "Roraima",
+        "latitude" : 1.910062,
+        "longitude" : -61.173244,
+        "raio" : 200.0
+    },
+    { 
+    	"state" : "Santa Catarina",
+        "latitude" : -27.128261,
+        "longitude" : -50.737120,
+        "raio" : 250.0
+    },
+    { 
+    	"state" : "São Paulo",
+        "latitude" : -21.992547,
+        "longitude" : -48.471239,
+        "raio" : 320.0
+    },
+    { 
+    	"state" : "Sergipe",
+        "latitude" : -10.606066,
+        "longitude" : -37.370936,
+        "raio" : 70.0
+    },
+    { 
+    	"state" : "Tocantins",
+        "latitude" : -10.561893,
+        "longitude" : -48.273486,
+        "raio" : 225.0
+    }
+]

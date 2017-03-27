@@ -14,37 +14,52 @@
 <title>Trending Topics</title>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
+
+	//Load the Visualization API and the packages.
 	google.charts.load('current', {
 		packages : [ 'corechart', 'bar' ]
 	});
+	
+	// Set a callback to run when the Google Visualization API is loaded.
 	google.charts.setOnLoadCallback(drawBasic);
 
 	function drawBasic() {
-
-		/* var data = google.visualization.arrayToDataTable([
-				[ 'Estado', 'Quantidade de Tweets', ],
-				[ 'New York City, NY', 8175000 ],
-				[ 'Los Angeles, CA', 3792000 ], [ 'Chicago, IL', 2695000 ],
-				[ 'Houston, TX', 2099000 ], [ 'Philadelphia, PA', 1526000 ] ]); */
-
+		var jsonData = $.ajax({
+			url : "NumberTweetsPerBrazilianState",
+			type : 'GET',
+			data : jQuery.param({
+				hashtag : "${hashtag}"
+			}),
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			async : false,
+			success : function(data) {
+				console.log(data);
+			},
+			error : function(xhr, type) {
+				alert('server error occoured')
+			}
+		}).responseJSON;
+		//alert(jsonData)
+		
+		// Create our data table out of JSON data loaded from server.
 		var data = new google.visualization.DataTable();
-		// assumes "word" is a string and "count" is a number
+		
+		// assumes "Estado" is a string and "Quantidade de Tweets" is a number
 		data.addColumn('string', 'Estado');
 		data.addColumn('number', 'Quantidade de Tweets');
 
-		/* for (var i = 0; i < jsonData.length; i++) {
-			data.addRow([ jsonData[i].word, jsonData[i].count ]);
-		} */
-		
-		data.addRows([
-			<c:forEach items="${tweetList}" var="entry">
-			[ '${entry.state}', ${entry.qty} ],
-			</c:forEach>
-			]);
+		$.each(jsonData, function(i, obj) {
+			data.addRow([ obj.state, obj.qty ]);
+		});
 
 		var options = {
-			title : 'Número de Tweets do Estados do Brasil',
+			title : 'Número de Tweets dos Estados do Brasil',
+			width: 350,
+			height: 700,
 			chartArea : {
 				width : '50%'
 			},
