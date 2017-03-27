@@ -27,7 +27,7 @@
 					function() {
 						$
 								.ajax({
-									url : "TrendingTopicsList",
+									url : "TrendingHashtags",
 									type : 'GET',
 									contentType : "application/json; charset=utf-8",
 									dataType : "json",
@@ -43,7 +43,7 @@
 												.each(
 														data,
 														function(i, item) {
-															trHTML += '<tr><td class="mdl-data-table__cell--non-numeric"><a href="tweets?hashtag='
+															trHTML += '<tr><td class="mdl-data-table__cell--non-numeric"><a href="tweetsnumber?hashtag='
 																	+ item
 																			.substring(1)
 																	+ '">'

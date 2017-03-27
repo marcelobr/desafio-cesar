@@ -24,7 +24,6 @@
 <script type="text/javascript"
 	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
-	
 	$(window)
 			.load(
 					function() {
@@ -48,9 +47,6 @@
 										dataType : "json",
 										async : true,
 										success : function(data) {
-											//console.log(data);
-											//alert(jsonData)
-
 											// Create our data table out of JSON data loaded from server.
 											var data1 = new google.visualization.DataTable();
 

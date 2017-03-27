@@ -14,13 +14,13 @@ import br.org.cesar.service.SearchService;
  * Servlet implementation class TwitterSearch
  */
 @WebServlet("/NumberTweetsPerBrazilianState")
-public class TwitterSearch extends HttpServlet {
+public class TweetsBrazilianStateJSON extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
-	public TwitterSearch() {
+	public TweetsBrazilianStateJSON() {
 		// TODO Auto-generated constructor stub
 	}
 
