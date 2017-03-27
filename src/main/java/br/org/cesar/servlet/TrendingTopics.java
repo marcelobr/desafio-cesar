@@ -1,13 +1,12 @@
 package br.org.cesar.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import br.org.cesar.service.TrendingService;
 
 /**
  * Servlet implementation class TrendingTopics
@@ -28,9 +27,6 @@ public class TrendingTopics extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//TrendingService service = new TrendingService();
-		//request.setAttribute("trendingList", service.getTrendingTopicsBrazil());
 		request.getRequestDispatcher("trending.jsp").forward(request, response);
 	}
 

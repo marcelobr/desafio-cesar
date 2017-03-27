@@ -82,43 +82,21 @@ public class TrendingService {
 			TwitterFactory tf = new TwitterFactory(cb.build());
 			Twitter twitter = tf.getInstance();
 
-			ResponseList<Location> locations = twitter.getAvailableTrends();
+			//ResponseList<Location> locations = twitter.getAvailableTrends();
 
 			Integer idTrendLocation = getTrendLocationId("brazil");
 
 			if (idTrendLocation == null) {
 				System.out.println("Trend Location Not Found");
-				//System.exit(0);
 			}
 
 			Trends trends = twitter.getPlaceTrends(idTrendLocation);
-			//for (int i = 0; i < trends.getTrends().length; i++) {
-			/*for (int i = 0; i < 10; i++) {
-				//System.out.println(trends.getTrends()[i].getName());
-				trendsList.add(trends.getTrends()[i].getName());
-			}*/
 			
 			for (int i = 0; i < trends.getTrends().length; i++) {
 				if (trends.getTrends()[i].getName().startsWith("#")) {
 					trendsList.add(trends.getTrends()[i].getName());
 				}
 			}
-			
-			/*int i = 0;
-			while (trendsList.size() <= 5) {
-				if (trends.getTrends()[i].getName().startsWith("#")) {
-					trendsList.add(trends.getTrends()[i].getName());
-				}
-				i += 1;
-			}*/
-			
-			/*int i = 0;
-			while (trendsList.size() <= 5) {
-				if (trends.getTrends()[i].getName().startsWith("#")) {
-					trendsList.add(trends.getTrends()[i].getName());
-				}
-				i += 1;
-			}*/
 
 			Gson gson = new GsonBuilder().create();
 			arrayListToJson = gson.toJson(trendsList);
@@ -126,7 +104,6 @@ public class TrendingService {
 		} catch (TwitterException te) {
 			te.printStackTrace();
 			System.out.println("Failed to get trends: " + te.getMessage());
-			//System.exit(-1);
 		}
 
 		return arrayListToJson;

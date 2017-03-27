@@ -1,6 +1,5 @@
 package br.org.cesar.service;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import br.org.cesar.bean.GeoCodes;
-import br.org.cesar.bean.TweetsByState;
+import br.org.cesar.bean.StateTweets;
 import twitter4j.GeoLocation;
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -35,7 +34,7 @@ public class SearchService {
 	}
 
 	public String getNumberTweetsPerBrazilianState(String hashtag) throws IOException {
-		List<TweetsByState> tweetsList = new ArrayList<TweetsByState>();
+		List<StateTweets> tweetsList = new ArrayList<StateTweets>();
 		String arrayListToJson = null;
 		try {
 			Properties oauthProp = getProp("oauth.properties");
@@ -47,15 +46,6 @@ public class SearchService {
 					.setOAuthAccessTokenSecret(oauthProp.getProperty("twitter.AccessTokenSecret"));
 			TwitterFactory tf = new TwitterFactory(cb.build());
 			Twitter twitter = tf.getInstance();
-
-			Properties geoCodeProp = getProp("geocode.properties");
-
-			// Double latitude =
-			// Double.parseDouble(geoCodeProp.getProperty("amazonas.latitude"));
-			// Double longitude =
-			// Double.parseDouble(geoCodeProp.getProperty("amazonas.longitude"));
-			// Double raio =
-			// Double.parseDouble(geoCodeProp.getProperty("amazonas.raio"));
 
 			// Get file from resources folder
 			ClassLoader classLoader = getClass().getClassLoader();
@@ -75,7 +65,7 @@ public class SearchService {
 
 				System.out.println(tweets.size());
 
-				TweetsByState tweetItem = new TweetsByState(item.getState(), tweets.size());
+				StateTweets tweetItem = new StateTweets(item.getState(), tweets.size());
 
 				tweetsList.add(tweetItem);
 			}

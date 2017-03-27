@@ -29,9 +29,7 @@ public class TrendingSearch extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		TrendingService service = new TrendingService();
-		//request.setAttribute("trendingList", service.getTrendingTopicsBrazil());
 		String hashtagList = service.getTrendingTopicsBrazil();
-		//request.getRequestDispatcher("trending.jsp").forward(request, response);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().write(hashtagList);

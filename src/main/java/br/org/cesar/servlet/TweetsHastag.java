@@ -28,7 +28,6 @@ public class TweetsHastag extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String hashtag = request.getParameter("hashtag");
-
 		request.setAttribute("hashtag", hashtag);
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}

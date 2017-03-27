@@ -1,10 +1,10 @@
 package br.org.cesar.bean;
 
-public class TweetsByState {
+public class StateTweets {
 	private String state;
     private Integer qty;
     
-	public TweetsByState(String state, Integer qty) {
+	public StateTweets(String state, Integer qty) {
 		super();
 		this.state = state;
 		this.qty = qty;

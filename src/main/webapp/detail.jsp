@@ -111,7 +111,7 @@
 			<div class="mdl-layout-spacer"></div>
 			<!-- Navigation. We hide it in small screens. -->
 			<nav class="mdl-navigation mdl-layout--large-screen-only"> <a
-				class="mdl-navigation__link" href="ExibeRanking">Trending Hashtags</a> </nav>
+				class="mdl-navigation__link" href="hashtags">Trending Hashtags</a> </nav>
 		</div>
 		</header>
 		<div class="mdl-layout__drawer">
