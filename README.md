@@ -6,10 +6,14 @@ A tecnologia escolhida para o desenvolvimento do desafio foi o Java na sua vers�
 * Java Servlets;
 * Material Design Lite;
 * Ajax;
-* JSON.
+* JSON;
+* Google Charts;
+* Teste de Integração;
+* Apache Maven para gerenciamento de dependências.
 
 ### Requisitos Mínimos:
     - Java 8
     - Apache Maven
+    - Eclipse IDE
 
 ### Configuração do Ambiente:
