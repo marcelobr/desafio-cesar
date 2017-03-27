@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import br.org.cesar.service.TrendingService;
 
 /**
- * Servlet implementation class TrendingTopics
+ * Servlet implementation class TrendingSearch
  */
-@WebServlet("/hashtags")
-public class TrendingTopics extends HttpServlet {
+@WebServlet("/TrendingTopicsList")
+public class TrendingSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TrendingTopics() {
+    public TrendingSearch() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,10 +28,13 @@ public class TrendingTopics extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//TrendingService service = new TrendingService();
+		TrendingService service = new TrendingService();
 		//request.setAttribute("trendingList", service.getTrendingTopicsBrazil());
-		request.getRequestDispatcher("trending.jsp").forward(request, response);
+		String hashtagList = service.getTrendingTopicsBrazil();
+		//request.getRequestDispatcher("trending.jsp").forward(request, response);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		response.getWriter().write(hashtagList);
 	}
 
 	/**

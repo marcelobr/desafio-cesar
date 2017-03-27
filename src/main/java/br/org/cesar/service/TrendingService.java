@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import twitter4j.Location;
 import twitter4j.ResponseList;
 import twitter4j.Trends;
@@ -64,8 +67,9 @@ public class TrendingService {
 
 	}
 
-	public List<String> getTrendingTopicsBrazil() throws IOException {
+	public String getTrendingTopicsBrazil() throws IOException {
 		List<String> trendsList = new ArrayList<>();
+		String arrayListToJson = null;
 		try {
 
 			Properties oauthProp = getProp("oauth.properties");
@@ -84,7 +88,7 @@ public class TrendingService {
 
 			if (idTrendLocation == null) {
 				System.out.println("Trend Location Not Found");
-				System.exit(0);
+				//System.exit(0);
 			}
 
 			Trends trends = twitter.getPlaceTrends(idTrendLocation);
@@ -93,22 +97,38 @@ public class TrendingService {
 				//System.out.println(trends.getTrends()[i].getName());
 				trendsList.add(trends.getTrends()[i].getName());
 			}*/
-			int i = 0;
+			
+			for (int i = 0; i < trends.getTrends().length; i++) {
+				if (trends.getTrends()[i].getName().startsWith("#")) {
+					trendsList.add(trends.getTrends()[i].getName());
+				}
+			}
+			
+			/*int i = 0;
 			while (trendsList.size() <= 5) {
 				if (trends.getTrends()[i].getName().startsWith("#")) {
 					trendsList.add(trends.getTrends()[i].getName());
 				}
 				i += 1;
-			}
+			}*/
+			
+			/*int i = 0;
+			while (trendsList.size() <= 5) {
+				if (trends.getTrends()[i].getName().startsWith("#")) {
+					trendsList.add(trends.getTrends()[i].getName());
+				}
+				i += 1;
+			}*/
 
-			//System.exit(0);
+			Gson gson = new GsonBuilder().create();
+			arrayListToJson = gson.toJson(trendsList);
 
 		} catch (TwitterException te) {
 			te.printStackTrace();
 			System.out.println("Failed to get trends: " + te.getMessage());
-			System.exit(-1);
+			//System.exit(-1);
 		}
 
-		return trendsList;
+		return arrayListToJson;
 	}
 }

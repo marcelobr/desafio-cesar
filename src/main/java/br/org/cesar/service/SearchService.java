@@ -86,7 +86,6 @@ public class SearchService {
 		// if there is an error then catch it and print it out
 		catch (TwitterException te) {
 			System.out.println("Failed to search tweets: " + te.getMessage());
-			System.exit(-1);
 		}
 
 		return arrayListToJson;

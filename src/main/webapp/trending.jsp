@@ -12,6 +12,34 @@
 	href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <title>Trending Topics</title>
+<script type="text/javascript"
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(window).load(function() {
+				$.ajax({
+					url : "TrendingTopicsList",
+					type : 'GET',
+					contentType : "application/json; charset=utf-8",
+					dataType : "json",
+					async : true,
+					success : function(data) {
+						var trHTML = '';
+
+						$.each(data, function(i, item) {
+							trHTML += '<tr><td class="mdl-data-table__cell--non-numeric"><a href="tweets?hashtag=' + item.substring(1) + '">' + item + '</a>'
+									+ '</td></tr>';
+						});
+
+						$('#trendings').append(trHTML);
+						$('#spinloading').removeAttr("class");
+						$('#spinloading').attr("class", "mdl-spinner mdl-js-spinner");
+					},
+					error : function(xhr, type) {
+						alert('server error occoured');
+					}
+				});
+			});
+</script>
 </head>
 <body>
 	<!-- Always shows a header, even in smaller screens. -->
@@ -20,49 +48,33 @@
 		<div class="mdl-layout__header-row">
 			<!-- Title -->
 			<span class="mdl-layout-title" id="topico_title">Trending
-				Topics</span>
+				Hashtags</span>
 			<!-- Add spacer, to align navigation to the right -->
 			<div class="mdl-layout-spacer"></div>
 			<!-- Navigation. We hide it in small screens. -->
-			<nav class="mdl-navigation mdl-layout--large-screen-only"> <a
-				class="mdl-navigation__link" href="ExibeRanking">Topics</a> </nav>
+			<!-- <nav class="mdl-navigation mdl-layout--large-screen-only"> <a
+				class="mdl-navigation__link" href="ExibeRanking">Topics</a> </nav> -->
 		</div>
 		</header>
-		<div class="mdl-layout__drawer">
+		<!-- <div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Fórum</span>
 			<nav class="mdl-navigation"> <a class="mdl-navigation__link"
 				href="ExibeRanking">Ranking</a> </nav>
-		</div>
+		</div> -->
 		<main class="mdl-layout__content">
 		<div class="page-content">
 			<section class="mdl-grid" id="my-table">
 			<div class="mdl-layout-spacer"></div>
+			<div id="spinloading" class="mdl-spinner mdl-js-spinner is-active" style="position:fixed;top:50%;left:50%"></div>
 			<div
 				class="mdl-cell mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--5-col-desktop mdl-cell--stretch">
-				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%;">
 					<thead>
 						<tr>
-							<th class="mdl-data-table__cell--non-numeric">Topic</th>
+							<th class="mdl-data-table__cell--non-numeric">Hashtags</th>
 						</tr>
 					</thead>
-					<tbody>
-						<!-- <div class="mdl-spinner mdl-js-spinner is-active"></div> -->
-						<c:choose>
-							<c:when test="${!trendingList.isEmpty()}">
-								<c:forEach items="${trendingList}" var="trendingItem">
-									<tr>
-										<td class="mdl-data-table__cell--non-numeric"><a
-											href="tweets?hashtag=${trendingItem.substring(1)}">${trendingItem}</a>
-										</td>
-									</tr>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<tr>
-									<td colspan="2" style="text-align: center">Nenhuma hashtag para exibir</td>
-								</tr>
-							</c:otherwise>
-						</c:choose>
+					<tbody id="trendings">
 					</tbody>
 				</table>
 			</div>

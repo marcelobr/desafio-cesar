@@ -39,4 +39,14 @@
     <servlet-name>TweetsHastag</servlet-name>
     <url-pattern>/TweetsHastag</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TrendingSearch</display-name>
+    <servlet-name>TrendingSearch</servlet-name>
+    <servlet-class>br.org.cesar.servlet.TrendingSearch</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrendingSearch</servlet-name>
+    <url-pattern>/TrendingSearch</url-pattern>
+  </servlet-mapping>
 </web-app>
