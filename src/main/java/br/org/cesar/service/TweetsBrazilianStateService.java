@@ -2,7 +2,6 @@ package br.org.cesar.service;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -12,10 +11,9 @@ import com.google.gson.GsonBuilder;
 
 import br.org.cesar.bean.GeoCodes;
 import br.org.cesar.bean.StateTweets;
+import br.org.cesar.util.PropertiesUtil;
 import twitter4j.GeoLocation;
 import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -23,30 +21,25 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TweetsBrazilianStateService {
 
-	public static Properties getProp(String propertiesfile) throws IOException {
-		String resourceName = propertiesfile; // could also be a constant
-		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		Properties props = new Properties();
-		try (InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
-			props.load(resourceStream);
-		}
-		return props;
+	private static Twitter twitter;
+	
+	public TweetsBrazilianStateService() throws IOException {
+		super();
+		Properties oauthProp = PropertiesUtil.getProp("oauth.properties");
+		
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true).setOAuthConsumerKey(oauthProp.getProperty("twitter.ConsumerKey"))
+				.setOAuthConsumerSecret(oauthProp.getProperty("twitter.ConsumerSecret"))
+				.setOAuthAccessToken(oauthProp.getProperty("twitter.AccessToken"))
+				.setOAuthAccessTokenSecret(oauthProp.getProperty("twitter.AccessTokenSecret"));
+		TwitterFactory tf = new TwitterFactory(cb.build());
+		twitter = tf.getInstance();
 	}
 
 	public String getNumberTweetsPerBrazilianState(String hashtag) throws IOException {
 		List<StateTweets> tweetsList = new ArrayList<StateTweets>();
 		String arrayListToJson = null;
 		try {
-			Properties oauthProp = getProp("oauth.properties");
-
-			ConfigurationBuilder cb = new ConfigurationBuilder();
-			cb.setDebugEnabled(true).setOAuthConsumerKey(oauthProp.getProperty("twitter.ConsumerKey"))
-					.setOAuthConsumerSecret(oauthProp.getProperty("twitter.ConsumerSecret"))
-					.setOAuthAccessToken(oauthProp.getProperty("twitter.AccessToken"))
-					.setOAuthAccessTokenSecret(oauthProp.getProperty("twitter.AccessTokenSecret"));
-			TwitterFactory tf = new TwitterFactory(cb.build());
-			Twitter twitter = tf.getInstance();
-
 			// Get file from resources folder
 			ClassLoader classLoader = getClass().getClassLoader();
 
@@ -55,17 +48,20 @@ public class TweetsBrazilianStateService {
 					GeoCodes[].class);
 
 			for (GeoCodes item : arr) {
-				// GeoLocation geo = new GeoLocation(latitude, longitude);
 				GeoLocation geo = new GeoLocation(item.getLatitude(), item.getLongitude());
 				Query query = new Query("#" + hashtag).geoCode(geo, item.getRaio(), "km");
-				// get the last 50 tweets
+				// get the last 10000 tweets
 				query.count(10000);
-				QueryResult result = twitter.search(query);
-				List<Status> tweets = result.getTweets();
+//				QueryResult result = twitter.search(query);
+//				List<Status> tweets = result.getTweets();
+				
+				Integer qty = twitter.search(query).getTweets().size();
+				
+//				System.out.println(tweets.size());
+				System.out.println(qty);
 
-				System.out.println(tweets.size());
-
-				StateTweets tweetItem = new StateTweets(item.getState(), tweets.size());
+//				StateTweets tweetItem = new StateTweets(item.getState(), tweets.size());
+				StateTweets tweetItem = new StateTweets(item.getState(), qty);
 
 				tweetsList.add(tweetItem);
 			}
