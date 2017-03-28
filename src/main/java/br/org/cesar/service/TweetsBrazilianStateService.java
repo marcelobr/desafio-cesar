@@ -25,8 +25,10 @@ public class TweetsBrazilianStateService {
 	
 	public TweetsBrazilianStateService() throws IOException {
 		super();
+		// Loads the data from the properties file
 		Properties oauthProp = PropertiesUtil.getProp("oauth.properties");
 		
+		// Set access data for twitter api
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true).setOAuthConsumerKey(oauthProp.getProperty("twitter.ConsumerKey"))
 				.setOAuthConsumerSecret(oauthProp.getProperty("twitter.ConsumerSecret"))
@@ -52,7 +54,7 @@ public class TweetsBrazilianStateService {
 			for (GeoCodes item : arr) {
 				GeoLocation geo = new GeoLocation(item.getLatitude(), item.getLongitude());
 				Query query = new Query("#" + hashtag).geoCode(geo, item.getRaio(), "km");
-				// get the last 1000 tweets
+				// Get the last 1000 tweets
 				query.count(1000);
 				
 				Integer qty = twitter.search(query).getTweets().size();
@@ -68,7 +70,6 @@ public class TweetsBrazilianStateService {
 			Gson gsonTweetsList = new GsonBuilder().create();
 			arrayListToJson = gsonTweetsList.toJson(tweetsList);
 		}
-		// if there is an error then catch it and print it out
 		catch (TwitterException te) {
 			System.out.println("Failed to search tweets: " + te.getMessage());
 			arrayListToJson = "Error fetching number of tweets per Brazilian state";

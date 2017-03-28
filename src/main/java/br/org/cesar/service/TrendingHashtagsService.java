@@ -23,8 +23,10 @@ public class TrendingHashtagsService {
 
 	public TrendingHashtagsService() throws IOException {
 		super();
+		// Loads the data from the properties file
 		Properties oauthProp = PropertiesUtil.getProp("oauth.properties");
-
+		
+		// Set access data for twitter api
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true).setOAuthConsumerKey(oauthProp.getProperty("twitter.ConsumerKey"))
 				.setOAuthConsumerSecret(oauthProp.getProperty("twitter.ConsumerSecret"))
@@ -33,7 +35,8 @@ public class TrendingHashtagsService {
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		twitter = tf.getInstance();
 	}
-
+	
+	// Get the id of certain location on twitter API
 	public Integer getTrendLocationId(String locationName) {
 
 		int idTrendLocation = 0;
@@ -63,29 +66,33 @@ public class TrendingHashtagsService {
 
 	}
 
+	// Search the trending hashtags in Brazil
 	public String getTrendingHashtagsBrazil() throws IOException {
 		List<String> trendsList = new ArrayList<>();
 		String arrayListToJson = null;
 		try {
+			// Get the id of Brazil
 			Integer idTrendLocation = getTrendLocationId("brazil");
 
 			if (idTrendLocation == null) {
 				System.out.println("Trend Location Not Found");
 				arrayListToJson = "Error fetching Trending Hashtags";
 			} else {
-
+				
+				// Get the trending topics in Brazil
 				Trends trends = twitter.getPlaceTrends(idTrendLocation);
-
+				
+				// Filters only hashtags
 				for (int i = 0; i < trends.getTrends().length; i++) {
 					if (trends.getTrends()[i].getName().startsWith("#")) {
 						trendsList.add(trends.getTrends()[i].getName());
 					}
 				}
-
+				
+				// Creates a json with the trending hashtags list
 				Gson gson = new GsonBuilder().create();
 				arrayListToJson = gson.toJson(trendsList);
 			}
-
 		} catch (TwitterException te) {
 			te.printStackTrace();
 			System.out.println("Failed to get trends: " + te.getMessage());

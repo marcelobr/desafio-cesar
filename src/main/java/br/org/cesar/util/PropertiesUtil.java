@@ -7,7 +7,7 @@ import java.util.Properties;
 public class PropertiesUtil {
 	
 	public static Properties getProp(String propertiesfile) throws IOException {
-		String resourceName = propertiesfile; // could also be a constant
+		String resourceName = propertiesfile;
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		Properties props = new Properties();
 		try (InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
