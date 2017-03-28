@@ -34,7 +34,7 @@ public class TrendingHashtagsService {
 		twitter = tf.getInstance();
 	}
 
-	private static Integer getTrendLocationId(String locationName) {
+	public Integer getTrendLocationId(String locationName) {
 
 		int idTrendLocation = 0;
 
