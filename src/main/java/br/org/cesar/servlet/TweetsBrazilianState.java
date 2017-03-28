@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TweetsHastag
+ * Servlet implementation to delegate the bar graph display
  */
 @WebServlet("/tweetsnumber")
 public class TweetsBrazilianState extends HttpServlet {

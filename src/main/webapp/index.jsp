@@ -82,12 +82,6 @@
 								class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 								Go to Trending Hashtags </a>
 						</div>
-						<!-- <div class="mdl-card__menu">
-							<button
-								class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-								<i class="material-icons">share</i>
-							</button>
-						</div> -->
 					</div>
 				</div>
 				<div class="mdl-layout-spacer"></div>

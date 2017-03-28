@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.org.cesar.service.TrendingHashtagsService;
 
 /**
- * Servlet implementation class TrendingSearch
+ * Servlet implementation to return the json that represents the list of trending hashtags
  */
 @WebServlet("/TrendingHashtags")
 public class TrendingHashtagsJSON extends HttpServlet {

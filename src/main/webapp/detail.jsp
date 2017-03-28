@@ -52,10 +52,6 @@
 											data1.addColumn('string', 'States');
 											data1.addColumn('number',
 													'Number of Tweets');
-											/* data.addColumn({
-												type : 'string',
-												role : 'style'
-											}); */
 
 											$.each(data, function(i, obj) {
 												data1.addRow([ obj.state,

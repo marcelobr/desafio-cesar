@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.org.cesar.service.TweetsBrazilianStateService;
 
 /**
- * Servlet implementation class TwitterSearch
+ * Servlet implementation to return the json that represents the list of states and number of tweets
  */
 @WebServlet("/NumberTweetsPerBrazilianState")
 public class TweetsBrazilianStateJSON extends HttpServlet {

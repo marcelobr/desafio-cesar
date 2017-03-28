@@ -112,16 +112,6 @@
 					style="position: fixed; top: 50%; left: 50%"></div>
 				<div id="trendings"
 					class="mdl-cell mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--5-col-desktop mdl-cell--stretch">
-					<!-- <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
-						style="width: 100%;">
-						<thead>
-							<tr>
-								<th class="mdl-data-table__cell--non-numeric">Hashtags</th>
-							</tr>
-						</thead>
-						<tbody id="trendings">
-						</tbody>
-					</table> -->
 				</div>
 				<div class="mdl-layout-spacer"></div>
 			</section>

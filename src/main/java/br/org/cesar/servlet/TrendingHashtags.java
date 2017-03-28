@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TrendingTopics
+ * Servlet implementation to delegate the list view of trending hashtags
  */
 @WebServlet("/hashtags")
 public class TrendingHashtags extends HttpServlet {

@@ -42,11 +42,13 @@ public class TweetsBrazilianStateService {
 		try {
 			// Get file from resources folder
 			ClassLoader classLoader = getClass().getClassLoader();
-
+			
+			// Loads the latitude, longitude, and radius coordinates of each Brazilian state into an array
 			Gson gsonGeoCode = new Gson();
 			GeoCodes[] arr = gsonGeoCode.fromJson(new FileReader(classLoader.getResource("geocode.json").getFile()),
 					GeoCodes[].class);
-
+			
+			// Makes a request for the twitter API for each Brazilian state
 			for (GeoCodes item : arr) {
 				GeoLocation geo = new GeoLocation(item.getLatitude(), item.getLongitude());
 				Query query = new Query("#" + hashtag).geoCode(geo, item.getRaio(), "km");
@@ -61,7 +63,8 @@ public class TweetsBrazilianStateService {
 
 				tweetsList.add(tweetItem);
 			}
-
+			
+			// Creates a json with the number of tweets per brazilian state
 			Gson gsonTweetsList = new GsonBuilder().create();
 			arrayListToJson = gsonTweetsList.toJson(tweetsList);
 		}
