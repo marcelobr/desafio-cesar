@@ -44,3 +44,11 @@ Para fazer o deploy da aplicação no tomcat, é preciso primeiro, configurar os
 </plugin>
 ...
 ```
+
+Uma vez configurado, basta executar o seguinte comando no terminal:
+
+    $ sudo mvn tomcat:deploy
+    
+Para acessar a aplicação utilize o endereço: http://localhost:8080/desafiocesar
+
+Caso o tomcat onde foi feito o deploy esteja em alguma outra máquina ou servidor, é preciso substituir localhost pelo IP da máquina ou servidor correspodente.
