@@ -36,7 +36,6 @@ Para fazer o deploy da aplicação no tomcat, é preciso primeiro, configurar os
 	<artifactId>tomcat-maven-plugin</artifactId>
 	<configuration>
 		<url>http://localhost:8080/manager/text</url>
-		<server>TomcatServer</server>
 		<path>/desafiocesar</path>
 		<username>admin</username>
 		<password>password</password>
