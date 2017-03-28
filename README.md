@@ -48,11 +48,15 @@ Uma vez configurado, basta executar o seguinte comando no terminal:
 
     $ mvn tomcat:deploy
 
+Para rodar os testes:
+
+    $ mvn test
+
 Para acessar a aplicação utilize o endereço: http://localhost:8080/desafiocesar
 
 Caso o tomcat onde foi feito o deploy esteja em alguma outra máquina ou servidor, é preciso substituir localhost pelo IP da máquina ou servidor correspodente.
 
-### Justificativas da Solução:
+### Informações sobre a Solução:
 De uma forma geral, não há uma solução 100% precisa para contabilizar os tweets com base na localização dos usuários. Pois para determinar a localização, é preciso que o usuário esteja com a opção de localização ativada e permitida pelo mesmo. A segunda opção para determinar a localização é através da informação do perfil do usuário. Que pode ser também bastante imprecisa, pois por exemplo, o usuário pode informar que mora em Manaus/AM, mas quando estiver em outra cidade ou país nas suas férias, o tweet vai ser contabilizado para Manaus/AM. Caso essa segunda opção também falhe, é praticamente impossível determinar a localização do usuário.
 
 A abordagem utilizada neste projeto é com base nas coordenadas de latitude e longitude de um ponto aproximado do ponto central de cada estado brasileiro, e somado a isso, um raio em kilometros que vai do ponto central até aproximadamente os limites de fronteira de cada cada estado. Os dados de latitude, longitude e raio de cada estado estão armazenados no arquivo geocode.json que fica na pasta de resources do projeto.

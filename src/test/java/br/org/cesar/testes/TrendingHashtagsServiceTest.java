@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 import br.org.cesar.service.TrendingHashtagsService;
 
@@ -19,21 +20,21 @@ public class TrendingHashtagsServiceTest {
 	}
 
 	@Test
-	public void testTrendLocationIdNotNull() {
+	public void testTrendLocationIdNotNullAndEqualsBrazilTrendLocationId() {
 		Integer trendLocationId = tHashtagService.getTrendLocationId("brazil");
 		assertNotNull(trendLocationId);
-		//assertEquals(23424768, trendLocationId);
+		assertEquals(Integer.valueOf(23424768), trendLocationId);
 	}
 	
 	@Test
-	public void testTrendLocationIdNull1() {
+	public void testTrendLocationIdNull() {
 		Integer trendLocationId = tHashtagService.getTrendLocationId("qualquercoisaquenaosejapais");
 		assertNull(trendLocationId);
 	}
 	
 	@Test
-	public void testReturnStringTrendingTopics() throws IOException {
-		String trendTopicsBrazil = tHashtagService.getTrendingTopicsBrazil();
+	public void testReturnJsonStringTrendingHashtagsBrazil() throws IOException {
+		String trendTopicsBrazil = tHashtagService.getTrendingHashtagsBrazil();
 		assertNotNull(trendTopicsBrazil);
 	}
 }

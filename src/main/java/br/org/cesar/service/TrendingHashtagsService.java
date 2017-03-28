@@ -18,9 +18,9 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TrendingHashtagsService {
-	
+
 	private static Twitter twitter;
-	
+
 	public TrendingHashtagsService() throws IOException {
 		super();
 		Properties oauthProp = PropertiesUtil.getProp("oauth.properties");
@@ -63,28 +63,28 @@ public class TrendingHashtagsService {
 
 	}
 
-	public String getTrendingTopicsBrazil() throws IOException {
+	public String getTrendingHashtagsBrazil() throws IOException {
 		List<String> trendsList = new ArrayList<>();
 		String arrayListToJson = null;
 		try {
-			//ResponseList<Location> locations = twitter.getAvailableTrends();
-
 			Integer idTrendLocation = getTrendLocationId("brazil");
 
 			if (idTrendLocation == null) {
 				System.out.println("Trend Location Not Found");
-			}
+				arrayListToJson = "Error fetching Trending Hashtags";
+			} else {
 
-			Trends trends = twitter.getPlaceTrends(idTrendLocation);
-			
-			for (int i = 0; i < trends.getTrends().length; i++) {
-				if (trends.getTrends()[i].getName().startsWith("#")) {
-					trendsList.add(trends.getTrends()[i].getName());
+				Trends trends = twitter.getPlaceTrends(idTrendLocation);
+
+				for (int i = 0; i < trends.getTrends().length; i++) {
+					if (trends.getTrends()[i].getName().startsWith("#")) {
+						trendsList.add(trends.getTrends()[i].getName());
+					}
 				}
-			}
 
-			Gson gson = new GsonBuilder().create();
-			arrayListToJson = gson.toJson(trendsList);
+				Gson gson = new GsonBuilder().create();
+				arrayListToJson = gson.toJson(trendsList);
+			}
 
 		} catch (TwitterException te) {
 			te.printStackTrace();

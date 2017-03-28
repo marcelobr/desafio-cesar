@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trending Topics</title>
+<title>CESAR Challenge</title>
 </head>
 
 <body style="overflow: hidden;">
@@ -16,11 +16,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet"
-	href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<script type="text/javascript"
-	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="mdl/material.min.js"></script>
+<link rel="stylesheet" href="mdl/material.min.css">
+<script src="jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$(window)
 			.load(
@@ -60,7 +58,10 @@
 												"mdl-spinner mdl-js-spinner");
 									},
 									error : function(xhr, type) {
-										alert('server error occoured');
+										alert('Error fetching trending hashtags');
+										$('#spinloading').removeAttr("class");
+										$('#spinloading').attr("class",
+												"mdl-spinner mdl-js-spinner");
 									}
 								});
 					});
@@ -76,12 +77,12 @@
 					Hashtags</span>
 				<!-- Add spacer, to align navigation to the right -->
 				<div class="mdl-layout-spacer"></div>
-				
+
 				<!-- Navigation. We hide it in small screens. -->
 				<nav class="mdl-navigation mdl-layout--large-screen-only">
-					<a class="mdl-navigation__link" href="index.jsp">Home Page</a>
+					<a class="mdl-navigation__link" href="index.jsp">Home</a>
 				</nav>
-				
+
 				<div
 					class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
@@ -98,9 +99,9 @@
 			</div>
 		</header>
 		<div class="mdl-layout__drawer">
-			<span class="mdl-layout-title">Desafio CESAR</span>
+			<span class="mdl-layout-title">CESAR Challenge</span>
 			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="index.jsp">Home Page</a>
+				<a class="mdl-navigation__link" href="index.jsp">Home</a>
 			</nav>
 		</div>
 		<main class="mdl-layout__content">

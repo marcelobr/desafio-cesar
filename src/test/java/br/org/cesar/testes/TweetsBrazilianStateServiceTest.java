@@ -18,7 +18,7 @@ public class TweetsBrazilianStateServiceTest {
 	}
 
 	@Test
-	public void testReturnTweetsBrazilianStates() throws IOException {
+	public void testReturnJsonStringNumberTweetsBrazilianState() throws IOException {
 		String tweetsBrazilian = tBrazilianState.getNumberTweetsPerBrazilianState("coparedeam");
 		assertNotNull(tweetsBrazilian);
 	}

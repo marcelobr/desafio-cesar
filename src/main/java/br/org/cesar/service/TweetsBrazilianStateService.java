@@ -50,17 +50,13 @@ public class TweetsBrazilianStateService {
 			for (GeoCodes item : arr) {
 				GeoLocation geo = new GeoLocation(item.getLatitude(), item.getLongitude());
 				Query query = new Query("#" + hashtag).geoCode(geo, item.getRaio(), "km");
-				// get the last 10000 tweets
-				query.count(10000);
-//				QueryResult result = twitter.search(query);
-//				List<Status> tweets = result.getTweets();
+				// get the last 1000 tweets
+				query.count(1000);
 				
 				Integer qty = twitter.search(query).getTweets().size();
 				
-//				System.out.println(tweets.size());
 				System.out.println(qty);
 
-//				StateTweets tweetItem = new StateTweets(item.getState(), tweets.size());
 				StateTweets tweetItem = new StateTweets(item.getState(), qty);
 
 				tweetsList.add(tweetItem);
@@ -72,6 +68,7 @@ public class TweetsBrazilianStateService {
 		// if there is an error then catch it and print it out
 		catch (TwitterException te) {
 			System.out.println("Failed to search tweets: " + te.getMessage());
+			arrayListToJson = "Error fetching number of tweets per Brazilian state";
 		}
 
 		return arrayListToJson;
