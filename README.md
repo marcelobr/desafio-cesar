@@ -25,3 +25,22 @@ Considerando que todos os requisitos mínimos citados já estejam instalados e c
 2) Na janela Import, abrir a pasta Maven, selecionar a opção Existing Maven Projects e clicar no botão Next
 3) Clicar no botão Browser e selecionar a pasta do projeto enviado e clicar no botão OK
 4) Em seguida, clicar no botão Finish e esperar que o maven baixe todas as dependências do projeto
+
+Para fazer o deploy da aplicação no tomcat, é preciso primeiro, configurar os dados de acesso para o tomcat no arquivo pom.xml do projeto. Para isso modifique as tags url, path, username e password como mostrado no trecho abaixo:
+
+
+```xml
+...
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>tomcat-maven-plugin</artifactId>
+	<configuration>
+		<url>http://localhost:8080/manager/text</url>
+		<server>TomcatServer</server>
+		<path>/desafiocesar</path>
+		<username>admin</username>
+		<password>password</password>
+	</configuration>
+</plugin>
+...
+```
