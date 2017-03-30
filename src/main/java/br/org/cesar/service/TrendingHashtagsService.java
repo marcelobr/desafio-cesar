@@ -3,12 +3,11 @@ package br.org.cesar.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import br.org.cesar.util.PropertiesUtil;
+import br.org.cesar.factory.ConfigurationBuilderFactory;
 import twitter4j.Location;
 import twitter4j.ResponseList;
 import twitter4j.Trends;
@@ -23,15 +22,7 @@ public class TrendingHashtagsService {
 
 	public TrendingHashtagsService() throws IOException {
 		super();
-		// Loads the data from the properties file
-		Properties oauthProp = PropertiesUtil.getProp("oauth.properties");
-		
-		// Set access data for twitter api
-		ConfigurationBuilder cb = new ConfigurationBuilder();
-		cb.setDebugEnabled(true).setOAuthConsumerKey(oauthProp.getProperty("twitter.ConsumerKey"))
-				.setOAuthConsumerSecret(oauthProp.getProperty("twitter.ConsumerSecret"))
-				.setOAuthAccessToken(oauthProp.getProperty("twitter.AccessToken"))
-				.setOAuthAccessTokenSecret(oauthProp.getProperty("twitter.AccessTokenSecret"));
+		ConfigurationBuilder cb = ConfigurationBuilderFactory.getConfigurationBuilder();
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		twitter = tf.getInstance();
 	}
